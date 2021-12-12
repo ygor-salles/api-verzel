@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   postgres:
-    container_name: vivinio-app
+    container_name: app-verzel
     image: postgres:12.5
     environment:
       POSTGRES_USER: ${BD_USERNAME}
