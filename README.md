@@ -60,3 +60,12 @@ yarn typeorm migration:revert
 ```bash
 yarn build
 ```
+
+## Modelagem da aplicação
+
+<img src="https://raw.githubusercontent.com/ygor-salles/api-verzel/dev/assets/ModelagemRelacional.PNG"
+  alt="ModelagemBanco">
+  
+ ## Collection das requisições - insomnia
+ 
+ - As collections das requisições backend `Collection-Insomnia.json` se econtra dentro da pasta `assets` deste projeto.
