@@ -3,7 +3,7 @@
 ### VARIÁVEIS DE AMBIENTE
 
 - Criar na raiz da pasta do projeto um arquivo `.env`
-  e preencher as informações conforme se encontra no arquivo `.env.example`.
+  e preencher as informações conforme modelo que se encontra no arquivo `.env.example`.
 
 ### DOCKER
 
