@@ -29,6 +29,6 @@ app.use((err: ApiError | any, request: Request, response: Response, next: NextFu
   });
 });
 
-app.listen(+process.env.PORT || 3000, () =>
-  console.log(`Server is started in port ${process.env.PORT || 3000}`),
+app.listen(+process.env.PORT || 4000, () =>
+  console.log(`Server is started in port ${process.env.PORT || 4000}`),
 );
