@@ -17,12 +17,12 @@ class ModuleService {
   }
 
   async read() {
-    const allModules = await this.repositoryModule.find();
+    const allModules = await this.repositoryModule.find({ relations: ['lessons'] });
     return allModules;
   }
 
   async readById(id: number) {
-    const module = await this.repositoryModule.findOne(id);
+    const module = await this.repositoryModule.findOne(id, { relations: ['lessons'] });
     return module;
   }
 
