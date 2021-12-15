@@ -12,7 +12,7 @@ class LessonController {
     try {
       await lessonValidator.createValidation().validate(request.body, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(400, error.message || error);
+      throw new ApiError(200, error.message || error);
     }
 
     const lessonService = new LessonService();
@@ -33,9 +33,9 @@ class LessonController {
     try {
       await lessonValidator.readByIdValidation().validate({ id: +id }, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(error.message ? 400 : 404, error.message || error);
+      throw new ApiError(error.message ? 200 : 200, error.message || error);
     }
-    if (!(await lessonValidator.idExist(+id))) throw new ApiError(400, 'Lesson does not exist');
+    if (!(await lessonValidator.idExist(+id))) throw new ApiError(200, 'Lesson does not exist');
 
     const lessonService = new LessonService();
     const lesson = await lessonService.readById(+id);
@@ -49,9 +49,9 @@ class LessonController {
     try {
       await lessonValidator.deleteByIdValidation().validate({ id: +id }, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(error.message ? 400 : 404, error.message || error);
+      throw new ApiError(error.message ? 200 : 200, error.message || error);
     }
-    if (!(await lessonValidator.idExist(+id))) throw new ApiError(400, 'Lesson does not exist');
+    if (!(await lessonValidator.idExist(+id))) throw new ApiError(200, 'Lesson does not exist');
 
     const lessonService = new LessonService();
     await lessonService.deleteById(+id);
@@ -68,9 +68,9 @@ class LessonController {
         .updateValidation()
         .validate({ id: +id, ...data }, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(error.message ? 400 : 404, error.message || error);
+      throw new ApiError(error.message ? 200 : 200, error.message || error);
     }
-    if (!(await lessonValidator.idExist(+id))) throw new ApiError(400, 'Lesson does not exist');
+    if (!(await lessonValidator.idExist(+id))) throw new ApiError(200, 'Lesson does not exist');
 
     const lessonService = new LessonService();
     await lessonService.updateById(+id, data);

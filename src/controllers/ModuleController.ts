@@ -12,9 +12,9 @@ class ModuleController {
     try {
       await moduleValidator.createValidation().validate(request.body, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(400, error.message || error);
+      throw new ApiError(200, error.message || error);
     }
-    if (await moduleValidator.nameExist(name)) throw new ApiError(400, 'Module already exists');
+    if (await moduleValidator.nameExist(name)) throw new ApiError(200, 'Module already exists');
 
     const moduleService = new ModuleService();
     const module = await moduleService.create({ name });
@@ -34,9 +34,9 @@ class ModuleController {
     try {
       await moduleValidator.readByIdValidation().validate({ id: +id }, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(error.message ? 400 : 404, error.message || error);
+      throw new ApiError(error.message ? 200 : 200, error.message || error);
     }
-    if (!(await moduleValidator.idExist(+id))) throw new ApiError(400, 'Module does not exist');
+    if (!(await moduleValidator.idExist(+id))) throw new ApiError(200, 'Module does not exist');
 
     const moduleService = new ModuleService();
     const module = await moduleService.readById(+id);
@@ -50,9 +50,9 @@ class ModuleController {
     try {
       await moduleValidator.deleteByIdValidation().validate({ id: +id }, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(error.message ? 400 : 404, error.message || error);
+      throw new ApiError(error.message ? 200 : 200, error.message || error);
     }
-    if (!(await moduleValidator.idExist(+id))) throw new ApiError(400, 'Module does not exist');
+    if (!(await moduleValidator.idExist(+id))) throw new ApiError(200, 'Module does not exist');
 
     const moduleService = new ModuleService();
     await moduleService.deleteById(+id);
@@ -69,9 +69,9 @@ class ModuleController {
         .updateValidation()
         .validate({ id: +id, ...data }, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(error.message ? 400 : 404, error.message || error);
+      throw new ApiError(error.message ? 200 : 200, error.message || error);
     }
-    if (!(await moduleValidator.idExist(+id))) throw new ApiError(400, 'Module does not exist');
+    if (!(await moduleValidator.idExist(+id))) throw new ApiError(200, 'Module does not exist');
 
     const moduleService = new ModuleService();
     await moduleService.updateById(+id, data);

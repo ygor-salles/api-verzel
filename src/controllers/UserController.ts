@@ -12,9 +12,9 @@ class UserController {
     try {
       await userValidator.createValidation().validate(request.body, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(400, error.message || error);
+      throw new ApiError(200, error.message || error);
     }
-    if (await userValidator.emailExist(email)) throw new ApiError(400, 'User already exists');
+    if (await userValidator.emailExist(email)) throw new ApiError(200, 'User already exists');
 
     const userService = new UserService();
     const user = await userService.create({ name, email, password });
@@ -34,9 +34,9 @@ class UserController {
     try {
       await userValidator.readByIdValidation().validate({ id: +id }, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(error.message ? 400 : 404, error.message || error);
+      throw new ApiError(error.message ? 200 : 200, error.message || error);
     }
-    if (!(await userValidator.idExist(+id))) throw new ApiError(400, 'User does not exist');
+    if (!(await userValidator.idExist(+id))) throw new ApiError(200, 'User does not exist');
 
     const userService = new UserService();
     const user = await userService.readById(+id);
@@ -50,9 +50,9 @@ class UserController {
     try {
       await userValidator.deleteByIdValidation().validate({ id: +id }, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(error.message ? 400 : 404, error.message || error);
+      throw new ApiError(error.message ? 200 : 200, error.message || error);
     }
-    if (!(await userValidator.idExist(+id))) throw new ApiError(400, 'User does not exist');
+    if (!(await userValidator.idExist(+id))) throw new ApiError(200, 'User does not exist');
 
     const userService = new UserService();
     await userService.deleteById(+id);
@@ -67,9 +67,9 @@ class UserController {
     try {
       await userValidator.updateValidation().validate({ id: +id, ...data }, { abortEarly: false });
     } catch (error) {
-      throw new ApiError(error.message ? 400 : 404, error.message || error);
+      throw new ApiError(error.message ? 200 : 200, error.message || error);
     }
-    if (!(await userValidator.idExist(+id))) throw new ApiError(400, 'User does not exist');
+    if (!(await userValidator.idExist(+id))) throw new ApiError(200, 'User does not exist');
 
     const userService = new UserService();
     await userService.updateById(+id, data);
