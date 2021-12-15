@@ -23,7 +23,7 @@ router.put('/users/:id', Auth, userController.updateById);
 router.delete('/users/:id', Auth, userController.deleteById);
 
 router.post('/modules', Auth, moduleController.create);
-router.get('/modules', Auth, moduleController.read);
+router.get('/modules', moduleController.read);
 router.get('/modules/:id', Auth, moduleController.readById);
 router.put('/modules/:id', Auth, moduleController.updateById);
 router.delete('/modules/:id', Auth, moduleController.deleteById);
